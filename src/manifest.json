@@ -1,0 +1,21 @@
+{
+  "name": "Lifull Home's Archive Order",
+  "version": "1.0.2",
+  "manifest_version": 2,
+  "description": "Extension for Lifull Home's Archive Order",
+  "content_scripts": [{
+    "matches": ["https://www.homes.co.jp/archive/*"],
+    "js": [
+      "content.js"
+    ]
+  }],
+  "background": {
+    "scripts": ["hot-reload.js"]
+  },
+  "browser_action": {
+    "default_icon": "icon.png"
+  },
+  "icons" : {
+    "128": "icon.png"
+  }
+}
