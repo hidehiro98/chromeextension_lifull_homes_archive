@@ -1,6 +1,6 @@
 # Lifull Home's Archive Order
-Lifull Home's Archiveサイトの賃貸掲載履歴を部屋ごとにソートする拡張機能です。
-サイト例：https://www.homes.co.jp/archive/b-13683211/
+- Lifull Home's Archiveサイトの賃貸掲載履歴を部屋ごとにソートする拡張機能です。
+- サイト例：https://www.homes.co.jp/archive/b-13683211/
 
 ## 使い方
 - $ git clone https://github.com/hidehiro98/chromeextension_lifull_homes_archive
