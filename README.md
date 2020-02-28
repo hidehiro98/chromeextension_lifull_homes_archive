@@ -5,5 +5,6 @@ Lifull Home's Archiveサイトの賃貸掲載履歴を部屋ごとにソート�
 ## 使い方
 - $ git clone https://github.com/hidehiro98/chromeextension_lifull_homes_archive
 - chrome://extensions/ にアクセス
+- 右上のディベロッパーモードをオンにする
 - 左上の「パッケージ化されていない拡張機能を読み込む」をクリック
 - このリポジトリのsrcディレクトリを選択する
