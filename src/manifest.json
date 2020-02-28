@@ -1,6 +1,6 @@
 {
   "name": "Lifull Home's Archive Order",
-  "version": "1.0.2",
+  "version": "0.9.0",
   "manifest_version": 2,
   "description": "Extension for Lifull Home's Archive Order",
   "content_scripts": [{
