@@ -12,4 +12,5 @@
 ## 使い方 (Tampermonkey scriptとして)
 - https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=ja をインストール
 - Tampermonkeyをクリックして新規スクリプトをクリック
+- 7行目を`// @match        https://www.homes.co.jp/archive/*`に置き換え
 - `content.js`の内容を全て`// Your code here...`にコピペ
