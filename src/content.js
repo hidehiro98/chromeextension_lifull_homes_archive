@@ -17,13 +17,14 @@ window.onload = function() {
   let lastSize = rows[0]['cells'][2].textContent.slice(0, -2)
 
   let emptyRow = document.createElement('tr')
-  let emptyTd = document.createElement('td');
-  emptyTd.textContent = '';
-  emptyRow.appendChild(emptyTd.cloneNode(true));
-  emptyRow.appendChild(emptyTd.cloneNode(true));
-  emptyRow.appendChild(emptyTd.cloneNode(true));
-  emptyRow.appendChild(emptyTd.cloneNode(true));
-  emptyRow.appendChild(emptyTd.cloneNode(true));
+  emptyRow.style.backgroundColor = '#ffffff'
+  let emptyTd = document.createElement('td')
+  emptyTd.textContent = ''
+  emptyRow.appendChild(emptyTd.cloneNode(true))
+  emptyRow.appendChild(emptyTd.cloneNode(true))
+  emptyRow.appendChild(emptyTd.cloneNode(true))
+  emptyRow.appendChild(emptyTd.cloneNode(true))
+  emptyRow.appendChild(emptyTd.cloneNode(true))
 
   for (const [index, row] of rows.entries()) {
     if (row['cells'][0].textContent.slice(0, 4) > lastYear) {
