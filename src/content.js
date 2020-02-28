@@ -1,5 +1,5 @@
 window.onload = function() {
-  var body = document.getElementsByClassName('historyList');
+  var body = document.getElementsByClassName('prg-bukkenHistoryRent')['0'].getElementsByClassName('historyList');
   // body['0']['tBodies']['0']['rows'] これで行が取れる
   // body['0']['tBodies']['0']['rows']['0']['cells']
   // 0: td.year
