@@ -10,16 +10,16 @@ window.onload = function() {
 
   // HTMLElementからArrayにする
   let rows = Array.from(body['0']['tBodies']['0']['rows'])
-  rows.sort(this.compareSize).sort(this.compareType).sort(this.compareFloor)
+  rows.sort(compareSize).sort(compareType).sort(compareFloor)
 
   // 部屋ごとの間に空行を追加
   let lastYear = '2100'
   let lastSize = rows[0]['cells'][2].textContent.slice(0, -2)
   for (const [index, row] of rows.entries()) {
     if (row['cells'][0].textContent.slice(0, 4) > lastYear) {
-      rows.splice(index, 0, this.document.createElement('tr').appendChild(this.document.createElement('td')))
+      rows.splice(index, 0, document.createElement('tr').appendChild(document.createElement('td')))
     } else if (row['cells'][2].textContent.slice(0, -2) != lastSize) {
-      rows.splice(index, 0, this.document.createElement('tr').appendChild(this.document.createElement('td')))
+      rows.splice(index, 0, document.createElement('tr').appendChild(document.createElement('td')))
     }
     lastSize = row['cells'][2].textContent.slice(0, -2)
     lastYear = row['cells'][0].textContent.slice(0, 4)
