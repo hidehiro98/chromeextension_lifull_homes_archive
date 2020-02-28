@@ -10,11 +10,13 @@ window.onload = function() {
 
   // HTMLElementからArrayにする
   let rows = Array.from(body['0']['tBodies']['0']['rows'])
-  rows.sort(compareSize).sort(compareType).sort(compareFloor)
+  // Typeのsort、ミスのが多いかも。。
+  // rows.sort(compareSize).sort(compareType).sort(compareFloor)
+  rows.sort(compareSize).sort(compareFloor)
 
   // 部屋ごとの間に空行を追加
   let lastYear = '2100'
-  let lastSize = rows[0]['cells'][2].textContent.slice(0, -2)
+  let lastSize = rows[0]['cells'][2].textContent.slice(0, -3)
 
   let emptyRow = document.createElement('tr')
   emptyRow.style.backgroundColor = '#ffffff'
@@ -29,10 +31,10 @@ window.onload = function() {
   for (const [index, row] of rows.entries()) {
     if (row['cells'][0].textContent.slice(0, 4) > lastYear) {
       rows.splice(index, 0, emptyRow.cloneNode(true))
-    } else if (row['cells'][2].textContent.slice(0, -2) != lastSize) {
+    } else if (row['cells'][2].textContent.slice(0, -3) != lastSize) {
       rows.splice(index, 0, emptyRow.cloneNode(true))
     }
-    lastSize = row['cells'][2].textContent.slice(0, -2)
+    lastSize = row['cells'][2].textContent.slice(0, -3)
     lastYear = row['cells'][0].textContent.slice(0, 4)
   }
 
@@ -48,9 +50,10 @@ window.onload = function() {
   body[0].style.backgroundColor = '#eeeeee';
 };
 
+// 小数点第1位まであってれば同じとみなす
 function compareSize(a, b) {
-  if (a['cells'][2].textContent.slice(0, -2) > b['cells'][2].textContent.slice(0, -2)) return 1;
-  if (b['cells'][2].textContent.slice(0, -2) > a['cells'][2].textContent.slice(0, -2)) return -1;
+  if (a['cells'][2].textContent.slice(0, -3) > b['cells'][2].textContent.slice(0, -3)) return 1;
+  if (b['cells'][2].textContent.slice(0, -3) > a['cells'][2].textContent.slice(0, -3)) return -1;
 
   return 0;
 }
