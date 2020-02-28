@@ -14,4 +14,4 @@
 - Tampermonkeyをクリックして新規スクリプトをクリック
 - 2行目を`// @name         Lifull Home's Archive Order`に置き換え
 - 7行目を`// @match        https://www.homes.co.jp/archive/*`に置き換え
-- `content.js`の内容を全て`// Your code here...`にコピペ
+- `src/content.js`の内容を全て`// Your code here...`にコピペ
