@@ -54,8 +54,8 @@ window.onload = function() {
 
 // 小数点第1位まであってれば同じとみなす
 function compareSize(a, b) {
-  if (a['cells'][2].textContent.slice(0, -3) > b['cells'][2].textContent.slice(0, -3)) return 1;
-  if (b['cells'][2].textContent.slice(0, -3) > a['cells'][2].textContent.slice(0, -3)) return -1;
+  if (parseFloat(a['cells'][2].textContent.slice(0, -3)) > parseFloat(b['cells'][2].textContent.slice(0, -3))) return 1;
+  if (parseFloat(b['cells'][2].textContent.slice(0, -3)) > parseFloat(a['cells'][2].textContent.slice(0, -3))) return -1;
 
   return 0;
 }
@@ -68,8 +68,8 @@ function compareType(a, b) {
 }
 
 function compareFloor(a, b) {
-  if (a['cells'][4].textContent.slice(0, -1) > b['cells'][4].textContent.slice(0, -1)) return 1;
-  if (b['cells'][4].textContent.slice(0, -1) > a['cells'][4].textContent.slice(0, -1)) return -1;
+  if (parseInt(a['cells'][4].textContent.slice(0, -1)) > parseInt(b['cells'][4].textContent.slice(0, -1))) return 1;
+  if (parseInt(b['cells'][4].textContent.slice(0, -1)) > parseInt(a['cells'][4].textContent.slice(0, -1))) return -1;
 
   return 0;
 }
