@@ -13,5 +13,5 @@
 - https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=ja をインストール
 - Tampermonkeyをクリックして`新規スクリプトを追加`クリック
 - 2行目を`// @name         Lifull Home's Archive Sort`に置き換え
-- 7行目を`// @match        https://www.homes.co.jp/archive/*`に置き換え
+- 7行目を`// @match        https://www.homes.co.jp/archive/b-*`に置き換え
 - `src/content.js`の内容を全て`// Your code here...`にコピペ

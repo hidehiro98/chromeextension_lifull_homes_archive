@@ -4,7 +4,7 @@
   "manifest_version": 2,
   "description": "Extension for Lifull Home's Archive Order",
   "content_scripts": [{
-    "matches": ["https://www.homes.co.jp/archive/*"],
+    "matches": ["https://www.homes.co.jp/archive/b-*"],
     "js": [
       "content.js"
     ]
