@@ -4,14 +4,14 @@ window.onload = function() {
     // body['0']['tBodies']['0']['rows'] これで行が取れる
     // body['0']['tBodies']['0']['rows']['0']['cells']
     // 0: td.year
-    // 1: td.space
+    // 1: td.space (price)
     // 2: td.area
     // 3: td.room
     // 4: td.floor
 
     // HTMLElementからArrayにする
     let rows = Array.from(body['0']['tBodies']['0']['rows'])
-    // Typeのsort、ミスのが多いかも。。
+    // Typeのsort、ミスが多いので使わない
     // rows.sort(compareSize).sort(compareType).sort(compareFloor)
     rows.sort(compareSize).sort(compareFloor)
 
@@ -32,10 +32,11 @@ window.onload = function() {
     for (const [index, row] of rows.entries()) {
       if (row['cells'][0].textContent.slice(0, 4) > lastYear) {
         rows.splice(index, 0, emptyRow.cloneNode(true))
-      } else if (row['cells'][2].textContent.slice(0, -3) != lastSize) {
+      // } else if (row['cells'][2].textContent.slice(0, -3) != lastSize) {
+      } else if (Math.abs(parseFloat(row['cells'][2].textContent.slice(0, -2)) - parseFloat(lastSize)) >= 0.1) {
         rows.splice(index, 0, emptyRow.cloneNode(true))
       }
-      lastSize = row['cells'][2].textContent.slice(0, -3)
+      lastSize = row['cells'][2].textContent.slice(0, -2)
       lastYear = row['cells'][0].textContent.slice(0, 4)
     }
 
@@ -52,12 +53,14 @@ window.onload = function() {
   }
 };
 
-// 小数点第1位まであってれば同じとみなす
+// 差が0.1未満なら同じと見なす
 function compareSize(a, b) {
+  if (Math.abs(parseFloat(a['cells'][2].textContent.slice(0, -2)) - parseFloat(b['cells'][2].textContent.slice(0, -2))) < 0.1 ) return 0;
+
   if (parseFloat(a['cells'][2].textContent.slice(0, -3)) > parseFloat(b['cells'][2].textContent.slice(0, -3))) return 1;
   if (parseFloat(b['cells'][2].textContent.slice(0, -3)) > parseFloat(a['cells'][2].textContent.slice(0, -3))) return -1;
 
-  return 0;
+  // return 0;
 }
 
 function compareType(a, b) {
