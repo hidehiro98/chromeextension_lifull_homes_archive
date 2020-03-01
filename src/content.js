@@ -32,7 +32,6 @@ window.onload = function() {
     for (const [index, row] of rows.entries()) {
       if (row['cells'][0].textContent.slice(0, 4) > lastYear) {
         rows.splice(index, 0, emptyRow.cloneNode(true))
-      // } else if (row['cells'][2].textContent.slice(0, -3) != lastSize) {
       } else if (Math.abs(parseFloat(row['cells'][2].textContent.slice(0, -2)) - parseFloat(lastSize)) >= 0.1) {
         rows.splice(index, 0, emptyRow.cloneNode(true))
       }
@@ -43,6 +42,14 @@ window.onload = function() {
     // arrayからHTMLElementに戻す
     let result = document.createElement("tbody")
     for (const row of rows) {
+      let aveTd = document.createElement('td')
+      let average = ''
+      if (row['cells'][1].textContent != '') {
+        average = parseInt((parseFloat(row['cells'][1].textContent.split('万')[0]) * 10000) / parseFloat(row['cells'][2].textContent))
+      }
+      aveTd.textContent = average
+      row.appendChild(aveTd)
+
       result.appendChild(row)
     }
 
