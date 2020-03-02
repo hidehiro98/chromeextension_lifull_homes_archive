@@ -18,6 +18,7 @@ window.onload = function() {
     // 部屋ごとの間に空行を追加
     let lastYear = '2100'
     let lastSize = rows[0]['cells'][2].textContent.slice(0, -3)
+    let lastFloor = rows[0]['cells'][4].textContent.slice(0, -1)
 
     let emptyRow = document.createElement('tr')
     emptyRow.style.backgroundColor = '#ffffff'
@@ -34,9 +35,12 @@ window.onload = function() {
         rows.splice(index, 0, emptyRow.cloneNode(true))
       } else if (Math.abs(parseFloat(row['cells'][2].textContent.slice(0, -2)) - parseFloat(lastSize)) >= 0.1) {
         rows.splice(index, 0, emptyRow.cloneNode(true))
+      } else if (row['cells'][4].textContent.slice(0, -1) != lastFloor) {
+        rows.splice(index, 0, emptyRow.cloneNode(true))
       }
-      lastSize = row['cells'][2].textContent.slice(0, -2)
       lastYear = row['cells'][0].textContent.slice(0, 4)
+      lastSize = row['cells'][2].textContent.slice(0, -2)
+      lastFloor = row['cells'][4].textContent.slice(0, -1)
     }
 
     // arrayからHTMLElementに戻す
