@@ -11,56 +11,59 @@ window.onload = function() {
 
     // HTMLElementからArrayにする
     let rows = Array.from(body['0']['tBodies']['0']['rows'])
-    // Typeのsort、ミスが多いので使わない
-    // rows.sort(compareSize).sort(compareType).sort(compareFloor)
-    rows.sort(compareSize).sort(compareFloor)
 
-    // 部屋ごとの間に空行を追加
-    let lastYear = '2100'
-    let lastSize = rows[0]['cells'][2].textContent.slice(0, -3)
-    let lastFloor = rows[0]['cells'][4].textContent.slice(0, -1)
+    if (rows[0]['cells'][0] && rows[0]['cells'][1] && rows[0]['cells'][2] && rows[0]['cells'][3] && rows[0]['cells'][4]) {
+      // Typeのsort、ミスが多いので使わない
+      // rows.sort(compareSize).sort(compareType).sort(compareFloor)
+      rows.sort(compareSize).sort(compareFloor)
 
-    let emptyRow = document.createElement('tr')
-    emptyRow.style.backgroundColor = '#ffffff'
-    let emptyTd = document.createElement('td')
-    emptyTd.textContent = ''
-    emptyRow.appendChild(emptyTd.cloneNode(true))
-    emptyRow.appendChild(emptyTd.cloneNode(true))
-    emptyRow.appendChild(emptyTd.cloneNode(true))
-    emptyRow.appendChild(emptyTd.cloneNode(true))
-    emptyRow.appendChild(emptyTd.cloneNode(true))
+      // 部屋ごとの間に空行を追加
+      let lastYear = '2100'
+      let lastSize = rows[0]['cells'][2].textContent.slice(0, -3)
+      let lastFloor = rows[0]['cells'][4].textContent.slice(0, -1)
 
-    for (const [index, row] of rows.entries()) {
-      if (row['cells'][0].textContent.slice(0, 4) > lastYear) {
-        rows.splice(index, 0, emptyRow.cloneNode(true))
-      } else if (Math.abs(parseFloat(row['cells'][2].textContent.slice(0, -2)) - parseFloat(lastSize)) >= 0.1) {
-        rows.splice(index, 0, emptyRow.cloneNode(true))
-      } else if (row['cells'][4].textContent.slice(0, -1) != lastFloor) {
-        rows.splice(index, 0, emptyRow.cloneNode(true))
+      let emptyRow = document.createElement('tr')
+      emptyRow.style.backgroundColor = '#ffffff'
+      let emptyTd = document.createElement('td')
+      emptyTd.textContent = ''
+      emptyRow.appendChild(emptyTd.cloneNode(true))
+      emptyRow.appendChild(emptyTd.cloneNode(true))
+      emptyRow.appendChild(emptyTd.cloneNode(true))
+      emptyRow.appendChild(emptyTd.cloneNode(true))
+      emptyRow.appendChild(emptyTd.cloneNode(true))
+
+      for (const [index, row] of rows.entries()) {
+        if (row['cells'][0].textContent.slice(0, 4) > lastYear) {
+          rows.splice(index, 0, emptyRow.cloneNode(true))
+        } else if (Math.abs(parseFloat(row['cells'][2].textContent.slice(0, -2)) - parseFloat(lastSize)) >= 0.1) {
+          rows.splice(index, 0, emptyRow.cloneNode(true))
+        } else if (row['cells'][4].textContent.slice(0, -1) != lastFloor) {
+          rows.splice(index, 0, emptyRow.cloneNode(true))
+        }
+        lastYear = row['cells'][0].textContent.slice(0, 4)
+        lastSize = row['cells'][2].textContent.slice(0, -2)
+        lastFloor = row['cells'][4].textContent.slice(0, -1)
       }
-      lastYear = row['cells'][0].textContent.slice(0, 4)
-      lastSize = row['cells'][2].textContent.slice(0, -2)
-      lastFloor = row['cells'][4].textContent.slice(0, -1)
-    }
 
-    // arrayからHTMLElementに戻す
-    let result = document.createElement("tbody")
-    for (const row of rows) {
-      let aveTd = document.createElement('td')
-      let average = ''
-      if (row['cells'][1].textContent != '') {
-        average = parseInt((parseFloat(row['cells'][1].textContent.split('万')[0]) * 10000) / parseFloat(row['cells'][2].textContent))
+      // arrayからHTMLElementに戻す
+      let result = document.createElement("tbody")
+      for (const row of rows) {
+        let aveTd = document.createElement('td')
+        let average = ''
+        if (row['cells'][1].textContent != '') {
+          average = parseInt((parseFloat(row['cells'][1].textContent.split('万')[0]) * 10000) / parseFloat(row['cells'][2].textContent))
+        }
+        aveTd.textContent = average
+        row.appendChild(aveTd)
+
+        result.appendChild(row)
       }
-      aveTd.textContent = average
-      row.appendChild(aveTd)
 
-      result.appendChild(row)
+      body['0'].querySelector('tbody').remove()
+      body['0'].append(result)
+
+      body[0].style.backgroundColor = '#eeeeee';
     }
-
-    body['0'].querySelector('tbody').remove()
-    body['0'].append(result)
-
-    body[0].style.backgroundColor = '#eeeeee';
   }
 };
 
