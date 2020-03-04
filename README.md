@@ -16,5 +16,6 @@
 - 7行目を`// @match        https://www.homes.co.jp/archive/b-*`に置き換え
 - `src/content.js`の内容を全て`// Your code here...`にコピペ
 
-## その他
-- 良かったら[Add a shortcut to the Home's Archive in the Yahoo Realestate](https://github.com/hidehiro98/chromeextension_yahoo_to_homes)もどうぞ
+## 不動産関連拡張機能リスト
+- [Lifull Home's Archive Sort](https://github.com/hidehiro98/chromeextension_lifull_homes_archive)
+- [Add a shortcut to the Home's Archive in the Yahoo Realestate](https://github.com/hidehiro98/chromeextension_yahoo_to_homes)
